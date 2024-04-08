@@ -1,0 +1,43 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+pairs = [
+    [
+        r"hi|hello|hey",
+        ["Hello!", "Hey there!", "Hi! How can I help you?"]
+    ],
+    [
+        r"how are you ?",
+        ["I'm good, thanks for asking.", "I'm doing well, how about you?"]
+    ],
+    [
+        r"(.*) your name ?",
+        ["I'm a chatbot created by Ekta.", "You can call me ChatBot."]
+    ],
+    [
+        r"(.*) (age|old) ?",
+        ["I'm just a computer program, so I don't have an age.", "Age is just a number for me."]
+    ],
+    [
+        r"(.*) (created|made) ?",
+        ["I was created by Ekta Khairwar.", "I'm a project of Ekta Khairwar."]
+    ],
+    [
+        r"quit",
+        ["Bye! Take care.", "Goodbye. See you later!"]
+    ]
+]
+
+def chatbot():
+    print("Hi! I'm a chatbot. You can type 'quit' anytime to exit.")
+    chat = Chat(pairs, reflections)
+    while True:
+        user_input = input("You: ")
+        response = chat.respond(user_input)
+        print("Chatbot:", response)
+        if user_input.lower() == "quit":
+            break
+
+if __name__ == "__main__":
+    nltk.download('punkt')
+    chatbot()
